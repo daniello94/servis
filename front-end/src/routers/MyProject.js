@@ -25,6 +25,7 @@ export default function MyProject(props) {
                     <div key={project._id}>
                         <p>{project.title}</p>
                         <p>{project.description}</p>
+                        <img src={'http://localhost:8080/photo/' + project.hederPhoto} alt="foto profil" />
                     </div>
                 )
             })}

@@ -24,7 +24,7 @@ export default function EditProject() {
     });
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
 
     function MyWork(id) {
         axios.get('http://127.0.0.1:8080/project/' + id)
@@ -94,6 +94,17 @@ export default function EditProject() {
             setError('')
         }
 
+    };
+
+    function addHederPhoto(namePhoto) {
+
+        axios.put('http://127.0.0.1:8080/project/update/' + id, {
+            hederPhoto: namePhoto.name,
+            quantity: namePhoto.idPhoto
+        })
+            .then(() => {
+                MyWork(id)
+            })
     }
 
 
@@ -116,9 +127,21 @@ export default function EditProject() {
                 <H2>{oneProject.title}</H2>
                 <div className={styles.photo}>
                     {oneProject.gallery?.map((photo) => {
+                        const namePhoto = {
+                            name: photo.photo,
+                            idPhoto: photo._id
+                        }
                         return (
+                            <div key={photo._id} className={styles.vivePhoto} >
+                                <img src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" />
+                                {oneProject.quantity !== photo._id && (
+                                    <Button onClick={(e) => {
+                                        e.preventDefault()
+                                        addHederPhoto(namePhoto)
+                                    }}>Ustaw jako głowne</Button>
+                                )}
+                            </div>
 
-                            <img key={photo._id} src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" />
                         )
                     })}
                 </div>

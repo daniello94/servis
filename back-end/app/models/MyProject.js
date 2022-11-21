@@ -21,10 +21,15 @@ const schema = mongoose.Schema({
         type: String,
         default: ''
     },
+    quantity: {
+        type: String,
+        default: "",
+    },
     hederPhoto:{
         type:String,
         default:''
     }
+  
 
 });
 module.exports = mongoose.model('MyProject', schema);
