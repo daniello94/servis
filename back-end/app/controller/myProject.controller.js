@@ -34,12 +34,12 @@ function listPhoto(cb) {
         }
     })
 };
-function getPhoto(id,cb){
-    MyProject.findById(id).exec(function(err,client){
-        if(err){
+function getPhoto(id, cb) {
+    MyProject.findById(id).exec(function (err, client) {
+        if (err) {
             cb(err)
-        }else{
-            cb(null,client)
+        } else {
+            cb(null, client)
         }
     })
 };
@@ -69,8 +69,8 @@ function delateProject(id, cb) {
 module.exports = {
     add: addProject,
     addPhoto: photoAdd,
-    list:listPhoto,
-    get:getPhoto,
-    update:updateStan,
-    delate:delateProject
+    list: listPhoto,
+    get: getPhoto,
+    update: updateStan,
+    delate: delateProject
 }

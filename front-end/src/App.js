@@ -10,7 +10,6 @@ import Home from "./routers/Home";
 import AdministrationPanel from "./routers/AdministrationPanel";
 import MyProject from "./routers/MyProject";
 import EditProject from "./routers/EditProject";
-import Menu from "./components/Menu";
 
 export default function App() {
   const [userData, setUser] = useState(

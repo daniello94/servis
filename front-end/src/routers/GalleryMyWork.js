@@ -32,6 +32,7 @@ export default function GalleryMyWork() {
                 .then(() => {
                     listPhoto()
                     setError('')
+                    setTitle('')
                 })
         }
     };

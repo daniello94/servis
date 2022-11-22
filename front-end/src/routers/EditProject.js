@@ -11,7 +11,7 @@ import styles from "../style/EditProject.module.scss"
 
 
 export default function EditProject() {
-    let { id } = useParams()
+    let { id } = useParams();
 
     const [oneProject, setOneProject] = useState({
         title: '',
@@ -31,7 +31,7 @@ export default function EditProject() {
             .then((res) => {
                 setOneProject(res.data)
             })
-    }
+    };
 
     const addGallery = () => {
         const { photo } = form
@@ -42,7 +42,7 @@ export default function EditProject() {
             .then(() => {
                 MyWork(id)
             })
-    }
+    };
 
     function addInputPhoto(id) {
         if (!form.photo.name) {
@@ -54,15 +54,12 @@ export default function EditProject() {
             })
                 .then((res) => {
                     setOneProject(res.data)
-
                 })
             addGallery()
             MyWork(id)
             setError('')
-
         }
-
-    }
+    };
 
     function addDescription() {
         if (!description) {
@@ -77,8 +74,7 @@ export default function EditProject() {
             setDescription('')
             setError('')
         }
-
-    }
+    };
 
     function editTitle() {
         if (!title) {
@@ -93,7 +89,6 @@ export default function EditProject() {
             setTitle('')
             setError('')
         }
-
     };
 
     function addHederPhoto(namePhoto) {
@@ -105,89 +100,91 @@ export default function EditProject() {
             .then(() => {
                 MyWork(id)
             })
-    }
+    };
 
 
     const handlePhoto = async (e) => {
         setForm({
             ...form,
             photo: e.target.files[0],
-
         })
-
-    }
+    };
 
     useEffect(() => {
         MyWork(id)
     }, [id])
 
     return (
-        <Container>
-            <div className={styles.viveProject}>
-                <H2>{oneProject.title}</H2>
-                <div className={styles.photo}>
-                    {oneProject.gallery?.map((photo) => {
-                        const namePhoto = {
-                            name: photo.photo,
-                            idPhoto: photo._id
-                        }
-                        return (
-                            <div key={photo._id} className={styles.vivePhoto} >
-                                <img src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" />
-                                {oneProject.quantity !== photo._id && (
-                                    <Button onClick={(e) => {
-                                        e.preventDefault()
-                                        addHederPhoto(namePhoto)
-                                    }}>Ustaw jako głowne</Button>
-                                )}
-                            </div>
-
-                        )
-                    })}
-                </div>
-                <H2>Opis</H2>
-                <p>{oneProject.description}</p>
-            </div>
-
-            <div className={styles.fromEdit}>
-                <Error>{error}</Error>
-                <form encType="multipart/form-data">
-                    <input type="file" accept=".png, .jpg, .jpeg" name="photo" onChange={handlePhoto} />
-                    <Button isAlternative={true} onClick={(e) => {
-                        e.preventDefault()
-                        addInputPhoto(id)
-                    }}>Dodaj zdjęcie</Button>
-                </form>
-                <form>
-                    <input
-                        type='text'
-                        name="title"
-                        value={title}
-                        placeholder="Wpisz tytuł"
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <Button isAlternative={true} type="submit" onClick={(e) => {
-                        e.preventDefault()
-                        editTitle()
-                    }}>Zmień Tytuł</Button>
-                </form>
-                <form>
-
-                    <textarea
-                        type='text'
-                        name="description"
-                        value={description}
-                        placeholder='wpisz opis'
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <Button isAlternative={true} type="submit" onClick={(e) => {
-                        e.preventDefault()
-                        addDescription()
-                    }}>Zmień Opis</Button>
-                </form>
-            </div>
+        <>
             <Link className={styles.mainItem} to="/administrationPanel">Wróć</Link>
-        </Container>
+            <Container>
+                <div className={styles.viveProject}>
+                    <H2>{oneProject.title}</H2>
+                    <div className={styles.photo}>
+                        {oneProject.gallery?.map((photo) => {
+                            const namePhoto = {
+                                name: photo.photo,
+                                idPhoto: photo._id
+                            }
+                            return (
+                                <div key={photo._id} className={styles.vivePhoto} >
+                                    <img src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" />
+                                    {oneProject.quantity !== photo._id && (
+                                        <Button onClick={(e) => {
+                                            e.preventDefault()
+                                            addHederPhoto(namePhoto)
+                                        }}>Ustaw jako głowne</Button>
+                                    )}
+                                </div>
+
+                            )
+                        })}
+                    </div>
+                    <H2>Opis</H2>
+                    <p>{oneProject.description}</p>
+                </div>
+
+                <div className={styles.fromEdit}>
+                    <Error>{error}</Error>
+                    <form encType="multipart/form-data">
+                        <input type="file" accept=".png, .jpg, .jpeg" name="photo" onChange={handlePhoto} />
+                        <Button isAlternative={true} onClick={(e) => {
+                            e.preventDefault()
+                            addInputPhoto(id)
+                        }}>Dodaj zdjęcie</Button>
+                    </form>
+                    <form>
+                        <input
+                            type='text'
+                            name="title"
+                            value={title}
+                            placeholder="Wpisz tytuł"
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <Button isAlternative={true} type="submit" onClick={(e) => {
+                            e.preventDefault()
+                            editTitle()
+                        }}>Zmień Tytuł</Button>
+                    </form>
+                    <form>
+
+                        <textarea
+                            type='text'
+                            name="description"
+                            value={description}
+                            placeholder='wpisz opis'
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                        <Button isAlternative={true} type="submit" onClick={(e) => {
+                            e.preventDefault()
+                            addDescription()
+                        }}>Zmień Opis</Button>
+                    </form>
+                </div>
+
+            </Container>
+
+        </>
 
 
     )

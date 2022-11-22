@@ -1,0 +1,97 @@
+.conception {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+    height: 60vh;
+    .textConception {
+        width: 49%;
+        margin: 25px;
+        text-align: center;
+        p {
+            margin-top: 50px;
+        }
+    }
+    .imgPhoto {
+        width: 49%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .image {
+            cursor: pointer;
+            top: 0;
+            background-color: black;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            font-size: 70px;
+            color: white;
+            transition: 0.8s;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.link {
+    position: fixed;
+    top: 0;
+    text-decoration: none;
+    border: 3px solid black;
+    background-color: rgb(253, 85, 33);
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    transition: 0.8s;
+    &:hover {
+        background-color: black;
+    }
+}
+.viveGallery{
+    position: fixed;
+    top: 0;
+    display: flex;
+    background-color: black;
+    opacity: 0.9;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  .position{
+    position:relative;
+    margin-right: 40px;
+
+  }
+  .iconClose{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 50px;
+    color: white;
+    transition: 0.8s;
+    &:hover{
+        color: red;
+    }
+  }
+}
+.close{
+    display: none;
+}
