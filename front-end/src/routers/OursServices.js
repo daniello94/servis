@@ -46,7 +46,5 @@ export default function OursServices() {
                 </div>
             </div>
         </section>
-
-
     )
 }

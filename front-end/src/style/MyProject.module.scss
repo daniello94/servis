@@ -51,6 +51,7 @@
 
 .link {
     position: fixed;
+    z-index: 20;
     top: 0;
     text-decoration: none;
     border: 3px solid black;
@@ -63,35 +64,115 @@
         background-color: black;
     }
 }
-.viveGallery{
+.viveGallery {
+    z-index: 10000;
     position: fixed;
     top: 0;
-    display: flex;
     background-color: black;
-    opacity: 0.9;
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-  .position{
-    position:relative;
-    margin-right: 40px;
-
-  }
-  .iconClose{
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    font-size: 50px;
-    color: white;
-    transition: 0.8s;
-    &:hover{
-        color: red;
+    img {
+        margin-top: 20px;
+        width: 50%;
+        height: 75%;
+        border: 3px solid rgb(253, 85, 33);
     }
-  }
+    .position {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: relative;
+        justify-content: center;
+        align-items: flex-end;
+        width: 102%;
+        height: 20%;
+        overflow: scroll;
+        img {
+            cursor: pointer;
+            margin: 10px;
+            width: 90px;
+            height: 85px;
+        }
+    }
+    .iconClose {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 20px;
+        font-size: 50px;
+        color: white;
+        transition: 0.8s;
+        z-index: 20;
+        &:hover {
+            color: red;
+        }
+    }
 }
-.close{
+.close {
     display: none;
+}
+
+@media all and (max-width: 850px) {
+    .conception {
+        display: block;
+        height: auto;
+        .textConception,
+        .imgPhoto {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+    }
+}
+
+@media all and (max-width: 800px) {
+    .viveGallery {
+        img {
+            width: 70%;
+        }
+    }
+}
+
+@media all and (max-width: 700px) {
+    .viveGallery {
+        img {
+            width: 80%;
+        }
+        .iconClose {
+            font-size: 30px;
+        }
+    }
+}
+@media all and (max-width: 570px) {
+    .viveGallery {
+        .imgPhoto {
+            display: none;
+        }
+        .position {
+            display: block;
+            height: auto;
+            overflow-y: unset;
+            img {
+                margin-left: 50px;
+                margin-right: 50px;
+                width: 80%;
+                height: auto;
+            }
+        }
+    }
+}
+@media all and (max-width: 370px) {
+    .viveGallery {
+        .position {
+            img {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    }
 }

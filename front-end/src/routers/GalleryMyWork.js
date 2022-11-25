@@ -14,7 +14,7 @@ export default function GalleryMyWork() {
     const [error, setError] = useState('')
     
 
-    function listPhoto() {
+    function listProject() {
         axios.post('http://127.0.0.1:8080/project/all')
             .then((res) => {
                 setStatus(res.data)
@@ -30,7 +30,7 @@ export default function GalleryMyWork() {
                 title: title
             })
                 .then(() => {
-                    listPhoto()
+                    listProject()
                     setError('')
                     setTitle('')
                 })
@@ -41,12 +41,12 @@ export default function GalleryMyWork() {
 
         axios.delete('http://127.0.0.1:8080/project/delate/' + _id)
             .then(() => {
-                listPhoto()
+                listProject()
             })
     }
 
     useEffect(() => {
-        listPhoto()
+        listProject()
     }, [])
     return (
 

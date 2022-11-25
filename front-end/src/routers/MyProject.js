@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { BsImages,BsXLg} from "react-icons/bs";
+import { BsImages, BsXLg } from "react-icons/bs";
 
 /* components */
 import Container from "../components/Container";
@@ -12,11 +12,13 @@ import styles from "../style/MyProject.module.scss";
 
 export default function MyProject() {
     const [status, setStatus] = useState([]);
-    const [classActive, setClassActive] = useState('close')
+    const [classActive, setClassActive] = useState('close');
+
     const [oneProject, setOneProject] = useState({
         gallery: []
     });
 
+    const [galleryPhoto, setGalleryPhoto] = useState('')
 
     function listPhoto() {
         axios.post('http://127.0.0.1:8080/project/all')
@@ -28,7 +30,6 @@ export default function MyProject() {
         axios.get('http://127.0.0.1:8080/project/' + id)
             .then((res) => {
                 setOneProject(res.data)
-                console.log(res.data);
             })
         setClassActive('viveGallery')
     };
@@ -51,7 +52,10 @@ export default function MyProject() {
 
                             <div className={styles.imgPhoto}>
                                 <img src={'http://localhost:8080/photo/' + project.hederPhoto} alt="foto profil" />
-                                <span onClick={() => MyWork(project._id)} className={styles.image}>
+                                <span onClick={() => {
+                                    MyWork(project._id)
+                                    setGalleryPhoto(project.hederPhoto)
+                                }} className={styles.image}>
                                     <BsImages />
                                 </span>
                             </div>
@@ -61,17 +65,22 @@ export default function MyProject() {
 
             </Container>
             <div className={styles[classActive]} >
-                <div onClick={()=>setClassActive('close')} className={styles.iconClose}>
-                  <BsXLg/>  
+                <div onClick={() => { setClassActive('close') }} className={styles.iconClose}>
+                    <BsXLg />
                 </div>
-                
-                {oneProject.gallery.map((photo) => {
-                    return (
-                        <div key={photo._id} className={styles.position}>
-                            <img src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" />
-                        </div>
-                    )
-                })}
+
+                <img className={styles.imgPhoto} src={'http://localhost:8080/photo/' + galleryPhoto} alt="foto profil" />
+
+                <div className={styles.position}>
+                    {oneProject.gallery.map((photo) => {
+                        return (
+
+                            <img  key={photo._id} src={'http://localhost:8080/photo/' + photo.photo} alt="foto profil" onClick={() => {
+                                setGalleryPhoto(photo.photo)
+                            }} />
+                        )
+                    })}
+                </div>
             </div>
         </>
 

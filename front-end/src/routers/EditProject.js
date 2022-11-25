@@ -16,6 +16,7 @@ export default function EditProject() {
     const [oneProject, setOneProject] = useState({
         title: '',
         description: '',
+        oderStan: '',
         gallery: []
 
     });
@@ -91,6 +92,26 @@ export default function EditProject() {
         }
     };
 
+    function addHomeProject() {
+        const oderStan = "Active"
+        axios.put('http://127.0.0.1:8080/project/update/' + id, {
+            oderStan: oderStan
+        })
+            .then(() => {
+                MyWork(id)
+            })
+    };
+
+    function offHomeProject() {
+        const oderStan = "Close"
+        axios.put('http://127.0.0.1:8080/project/update/' + id, {
+            oderStan: oderStan
+        })
+            .then(() => {
+                MyWork(id)
+            })
+    };
+
     function addHederPhoto(namePhoto) {
 
         axios.put('http://127.0.0.1:8080/project/update/' + id, {
@@ -158,7 +179,8 @@ export default function EditProject() {
                             type='text'
                             name="title"
                             value={title}
-                            placeholder="Wpisz tytuł"
+                            maxLength='20'
+                            placeholder="Wpisz tytuł max 20 znaków"
                             onChange={(e) => setTitle(e.target.value)}
                         />
                         <Button isAlternative={true} type="submit" onClick={(e) => {
@@ -172,7 +194,8 @@ export default function EditProject() {
                             type='text'
                             name="description"
                             value={description}
-                            placeholder='wpisz opis'
+                            maxLength='600'
+                            placeholder='wpisz opis max 600 znaków'
                             onChange={(e) => setDescription(e.target.value)}
                         />
                         <Button isAlternative={true} type="submit" onClick={(e) => {
@@ -180,6 +203,20 @@ export default function EditProject() {
                             addDescription()
                         }}>Zmień Opis</Button>
                     </form>
+                    {oneProject.oderStan === "Close" && (
+                        <Button isAlternative={true} onClick={(e) => {
+                            e.preventDefault()
+                            addHomeProject()
+                        }}>Dodoaj do strony głownej</Button>
+                    )}
+
+                    {oneProject.oderStan === "Active" && (
+                        <Button isAlternative={true} onClick={(e) => {
+                            e.preventDefault()
+                            offHomeProject()
+                        }} >Usuń ze strony głownej</Button>
+                    )}
+
                 </div>
 
             </Container>

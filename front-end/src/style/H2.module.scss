@@ -3,3 +3,9 @@
     font-size: 30px;
     margin-bottom: 0;
 }
+
+@media all and (max-width: 992px) {
+  .titleH2{
+    font-size:25px ;
+  }
+}

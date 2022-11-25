@@ -9,12 +9,14 @@ import Menu from "../components/Menu";
 import AboutUs from "./AboutUs";
 import Login from "./Login";
 import OursServices from "../routers/OursServices";
+import MyProjectHome from "./MyProjectHome";
 
 /* components */
 import Button from "../components/Button";
 import Hr from "../components/Hr";
 import H2 from "../components/H2";
 import Error from "../components/Error";
+import A from "../components/A";
 
 /* media */
 import videoHeder from "../media/video/budowa.mp4";
@@ -85,10 +87,13 @@ export default function Home(props) {
                 <video src={videoHeder} autoPlay loop muted />
 
                 <div className={styles.hederTextContent}>
-                    <Menu
-                        open={() => openLoginWindow()}
-                        userData={props.userData}
-                        setUser={props.setUser} />
+                    <div className={styles.menuPosition}>
+                        <Menu
+                            open={() => openLoginWindow()}
+                            userData={props.userData}
+                            setUser={props.setUser} />
+                    </div>
+
 
                     <ImHome className={styles.iconStyle} />
                     <h1>
@@ -100,9 +105,9 @@ export default function Home(props) {
                     </p>
 
                     <div className={styles.hederButtonContent}>
-                        <Button isAlternative={true}>
+                        <A isAlternative={true} href='#myProject'>
                             Nasze Realizacje
-                        </Button>
+                        </A>
                         <Button>
                             Kontakt z nami
                         </Button>
@@ -112,7 +117,7 @@ export default function Home(props) {
             </div>
             <AboutUs />
             <OursServices />
-
+            <MyProjectHome />
 
             <div className={styles[isClose]}>
                 <div className={styles.formContact}>

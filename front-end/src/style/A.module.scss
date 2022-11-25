@@ -1,0 +1,21 @@
+.a {
+    bottom: 2px;
+    right: 10px;
+    z-index: 1;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 800;
+    font-family: "Gloria Hallelujah", cursive;
+    transition: 0.8s;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    background-color: rgb(253, 85, 33);
+    color: white;
+    &:hover {
+        background-color: black;
+        border: 2px solid white;
+        color: white;
+        opacity: 0.9;
+    }
+}
