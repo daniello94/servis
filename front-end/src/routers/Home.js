@@ -10,6 +10,7 @@ import AboutUs from "./AboutUs";
 import Login from "./Login";
 import OursServices from "../routers/OursServices";
 import MyProjectHome from "./MyProjectHome";
+import Footer from "./Footer";
 
 /* components */
 import Button from "../components/Button";
@@ -22,6 +23,7 @@ import A from "../components/A";
 import videoHeder from "../media/video/budowa.mp4";
 import { ImHome } from "react-icons/im";
 import { BsXLg } from "react-icons/bs"
+import Container from "../components/Container";
 
 export default function Home(props) {
     const [isClose, setClose] = useState('close');
@@ -105,12 +107,12 @@ export default function Home(props) {
                     </p>
 
                     <div className={styles.hederButtonContent}>
-                        <A isAlternative={true} href='#myProject'>
+                        <A href='#myProject'>
                             Nasze Realizacje
                         </A>
-                        <Button>
+                        <A isAlternative={true} href='#contact'>
                             Kontakt z nami
-                        </Button>
+                        </A>
                         <Button isBtn3={true} onClick={() => onOpen()}>Napisz teraz </Button>
                     </div>
                 </div>
@@ -118,6 +120,51 @@ export default function Home(props) {
             <AboutUs />
             <OursServices />
             <MyProjectHome />
+            <section id='contact' className={styles.contactHeder}>
+                <Container>
+                    <H2>Kontakt</H2>
+                    <Container isAlternative={true}>
+                        <div className={styles.address}>
+                            <p>Adres</p>
+                            <p>Wesoła 32a</p>
+                            <p>33-315 Kraków</p>
+                            <p>Telefon 633-363-336</p>
+                            <p>Email adres@adres.pl</p>
+                        </div>
+                        <div className={styles.contactFrom}>
+                            <Error>{error}</Error>
+                            <form onSubmit={sendMessage}>
+                                <input
+                                    type='text'
+                                    name='firstName'
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    placeholder="imię" />
+                                <input
+                                    type='text'
+                                    name='phoneNumber'
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    placeholder="telefon" />
+                                <input
+                                    type='text'
+                                    name='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="email" />
+                                <textarea
+                                    type='text'
+                                    name='textarea'
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    placeholder="Napisz tutaj swoją widomość" />
+                                <Button isAlternative={true} type='submit'>Wyślij</Button>
+                            </form>
+                        </div>
+                    </Container>
+                </Container>
+            </section>
+            <Footer />
 
             <div className={styles[isClose]}>
                 <div className={styles.formContact}>
@@ -170,3 +217,4 @@ export default function Home(props) {
         </>
     )
 };
+

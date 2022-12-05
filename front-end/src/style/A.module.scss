@@ -1,7 +1,8 @@
-.a {
+%conmanA {
     bottom: 2px;
     right: 10px;
     z-index: 1;
+    margin: 5px;
     cursor: pointer;
     padding: 10px;
     font-weight: 800;
@@ -18,4 +19,16 @@
         color: white;
         opacity: 0.9;
     }
+}
+
+.a {
+    @extend %conmanA;
+    background-color: rgb(253, 85, 33);
+    color: white;
+}
+.a2 {
+    @extend %conmanA;
+    background-color: transparent;
+    border: 2px solid rgb(253, 85, 33);
+    color: white;
 }
